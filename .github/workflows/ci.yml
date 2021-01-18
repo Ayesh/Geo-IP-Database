@@ -45,10 +45,11 @@ jobs:
       - name: Download and setup database
         run: |
           mkdir input
-          wget -O db.zip https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}&suffix=zip
+          wget -O db.zip "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}&suffix=zip"
           unzip db.zip -d input
           rm db.zip
           mv input/*/*.csv input/ -f
+          ls input
 
 
       - name: Process database
