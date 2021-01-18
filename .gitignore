@@ -1,0 +1,4 @@
+/vendor/
+/data/
+/input/
+composer.lock
