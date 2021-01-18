@@ -9,5 +9,7 @@
             "email": "ayesh@aye.sh"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "ayesh/geo-ip-tree-builder": "^1.0"
+    }
 }
