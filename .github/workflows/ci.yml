@@ -13,6 +13,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
 
       - name: Setup PHP, with composer and extensions
@@ -55,3 +57,27 @@ jobs:
       - name: Process database
         run: |
           php vendor/ayesh/geo-ip-tree-builder/run.php input/GeoLite2-Country-Blocks-IPv4.csv input/GeoLite2-Country-Locations-en.csv data
+          git status
+
+
+      - name: Get current date
+        id: date
+        run: |
+          echo "::set-output name=date::$(date +'%Y%m%d')"
+          echo "Update database ${{steps.date.outputs.date}}"
+
+
+      - name: Commit and tag if changed
+        uses: stefanzweifel/git-auto-commit-action@v4
+        id: commit
+        with:
+          commit_message: "Update database ${{steps.date.outputs.date}}"
+          tagging_message: "v1.0.${{steps.date.outputs.date}}"
+          branch: main
+
+      - name: Publish NPM version
+        if: steps.commit.outputs.changes_detected == 'true'
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: 1.0.${{steps.date.outputs.date}}
