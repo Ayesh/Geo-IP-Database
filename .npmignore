@@ -1,5 +1,4 @@
 /vendor/
-/data/
 /input/
 composer.lock
 composer.json
