@@ -1,7 +1,7 @@
 {
     "name": "ayesh/geo-ip-database",
     "description": "Weekly updated database of IP CIDR to Country codes, indexed by the first 1/4th of the IP address",
-    "type": "metapackage",
+    "type": "library",
     "license": "CC-BY-NC-SA-4.0",
     "authors": [
         {
