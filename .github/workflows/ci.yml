@@ -2,7 +2,7 @@ name: Update GeoIP Database
 on:  
   push:
   schedule:
-    - cron: '5 4 */7 * *'
+    - cron: '5 4 */3 * *'
 
 jobs:
   build:
