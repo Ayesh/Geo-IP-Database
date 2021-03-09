@@ -78,9 +78,3 @@ jobs:
           tagging_message: "v1.0.${{steps.date.outputs.date}}"
           branch: main
 
-      - name: Publish NPM version
-        if: steps.commit.outputs.changes_detected == 'true'
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: 1.0.${{steps.date.outputs.date}}
