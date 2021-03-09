@@ -75,6 +75,6 @@ jobs:
         id: commit
         with:
           commit_message: "Update database ${{steps.date.outputs.date}}"
-          tagging_message: "v1.0.${{steps.date.outputs.date}}"
+          tagging_message: "v1.1.${{steps.date.outputs.date}}"
           branch: main
 

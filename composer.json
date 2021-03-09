@@ -10,6 +10,6 @@
         }
     ],
     "require-dev": {
-        "ayesh/geo-ip-tree-builder": "^1.0.1"
+        "ayesh/geo-ip-tree-builder": "^1.1.1"
     }
 }
