@@ -44,11 +44,18 @@ jobs:
           php vendor/ayesh/geo-ip-tree-builder/run.php input/GeoLite2-Country-Blocks-IPv4.csv input/GeoLite2-Country-Locations-en.csv data
           git status
 
+
+      - name: Get current date
+        id: date
+        run: |
+          echo "{date}={$(date +'%Y%m%d')}" >> $GITHUB_OUTPUT
+
+
       - name: Commit and tag if changed
         uses: stefanzweifel/git-auto-commit-action@v4
         id: commit
         with:
           commit_message: "Update database ${{steps.date.outputs.date}}"
-          tagging_message: "v1.1.$(date +'%Y%m%d')"
+          tagging_message: "v1.1.${{steps.date.outputs.date}}"
           branch: main
 
