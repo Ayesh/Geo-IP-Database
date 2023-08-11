@@ -69,7 +69,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: "Publish npm releases"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
           npm publish
         env:
