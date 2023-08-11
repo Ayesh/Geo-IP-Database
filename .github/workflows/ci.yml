@@ -58,7 +58,6 @@ jobs:
 
       - name: Commit and tag if changed
         uses: stefanzweifel/git-auto-commit-action@v4
-        id: commit
         with:
           commit_message: "Update database ${{steps.date.outputs.date}}"
           tagging_message: "v1.1.${{steps.date.outputs.date}}"
@@ -69,8 +68,8 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: "Run if changes have been detected"
-        if: steps.commit.changes_detected == 'true'
+      - name: "Publish npm releases"
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
           npm publish
         env:
