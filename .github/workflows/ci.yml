@@ -42,7 +42,7 @@ jobs:
 
       - name: Process database
         run: |
-          git config --global safe.directory /github/workspace
+          git config --global --add safe.directory '*'
           php vendor/ayesh/geo-ip-tree-builder/run.php input/GeoLite2-Country-Blocks-IPv4.csv input/GeoLite2-Country-Locations-en.csv data
           git status
 
