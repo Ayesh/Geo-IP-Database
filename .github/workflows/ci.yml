@@ -58,7 +58,7 @@ jobs:
       - name: Update composer and npm package versions
         if: steps.changes.outputs.changed == 1
         run: |
-          
+          npm --no-git-tag-version version v1.1.${{steps.date.outputs.date}}
 
       - name: Commit and tag if changed
         if: steps.changes.outputs.changed == 1
