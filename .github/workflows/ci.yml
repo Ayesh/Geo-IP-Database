@@ -64,3 +64,14 @@ jobs:
           tagging_message: "v1.1.${{steps.date.outputs.date}}"
           branch: main
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: "Run if changes have been detected"
+        if: steps.commit.changes_detected == 'true'
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
