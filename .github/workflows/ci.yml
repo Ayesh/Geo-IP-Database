@@ -44,14 +44,24 @@ jobs:
           php vendor/ayesh/geo-ip-tree-builder/run.php input/GeoLite2-Country-Blocks-IPv4.csv input/GeoLite2-Country-Locations-en.csv data
           git status
 
+      - name: Check if there are changes
+        id: changes
+        uses: UnicornGlobal/has-changes-action@v1.0.11
 
       - name: Get current date
+        if: steps.changes.outputs.changed == 1
         id: date
         run: |
           echo "::set-output name=date::$(date +'%Y%m%d')"
           echo "Update database ${{steps.date.outputs.date}}"
+          
+      - name: Update composer and npm package versions
+        if: steps.changes.outputs.changed == 1
+        run: |
+          
 
       - name: Commit and tag if changed
+        if: steps.changes.outputs.changed == 1
         uses: stefanzweifel/git-auto-commit-action@v4
         id: commit
         with:
