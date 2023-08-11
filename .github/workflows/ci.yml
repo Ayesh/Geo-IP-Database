@@ -47,7 +47,6 @@ jobs:
           git status
 
       - name: Get current date
-        if: steps.changes.outputs.changed == 1
         id: date
         run: |
           echo "::set-output name=date::$(date +'%Y%m%d')"
