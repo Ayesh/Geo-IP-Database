@@ -1,6 +1,5 @@
 name: Update GeoIP Database
-on:  
-  push:
+on:
   workflow_dispatch:
   schedule:
     - cron: '5 4 */3 * *'
