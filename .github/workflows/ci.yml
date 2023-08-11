@@ -57,7 +57,6 @@ jobs:
           npm --no-git-tag-version version "v1.1.${{steps.date.outputs.date}}"
 
       - name: Commit and tag if changed
-        if: steps.changes.outputs.changed == 1
         uses: stefanzweifel/git-auto-commit-action@v4
         id: commit
         with:
