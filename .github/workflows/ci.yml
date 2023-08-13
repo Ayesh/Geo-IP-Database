@@ -2,7 +2,7 @@ name: Update GeoIP Database
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 4 */3 * *'
+    - cron: '5 4 */7 * *'
 
 jobs:
   build:
