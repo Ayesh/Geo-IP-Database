@@ -11,6 +11,9 @@ jobs:
       matrix:
         php-versions: ['8.2']
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
 
@@ -70,6 +73,6 @@ jobs:
 
       - name: "Publish npm releases"
         run: |
-          npm publish
+          npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
