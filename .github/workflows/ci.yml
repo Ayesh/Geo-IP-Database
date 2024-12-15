@@ -6,27 +6,19 @@ on:
 
 jobs:
   build:
-
-    strategy:
-      matrix:
-        php-versions: ['8.4']
     runs-on: ubuntu-latest
     permissions:
       contents: write
       id-token: write
 
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
-
+        uses: actions/checkout@v4
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: '8.4'
 
       - name: Install dependencies
         run: |
@@ -52,7 +44,7 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "::set-output name=date::$(date +'%Y%m%d')"
+          echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
           echo "Update database ${{steps.date.outputs.date}}"
           
       - name: Update composer and npm package versions
