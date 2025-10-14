@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -46,10 +46,17 @@ jobs:
         run: |
           echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
           echo "Update database ${{steps.date.outputs.date}}"
-          
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Update composer and npm package versions
-        run: |
-          npm --no-git-tag-version version "v1.1.${{steps.date.outputs.date}}"
+        run: npm --no-git-tag-version version "v1.1.${{steps.date.outputs.date}}"
 
       - name: Commit and tag if changed
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -57,11 +64,6 @@ jobs:
           commit_message: "Update database ${{steps.date.outputs.date}}"
           tagging_message: "v1.1.${{steps.date.outputs.date}}"
           branch: main
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: "Publish npm releases"
         run: |
