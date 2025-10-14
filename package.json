@@ -1,6 +1,6 @@
 {
   "name": "@ayesh/geo-ip-database",
-  "version": "1.1.20251008",
+  "version": "1.1.20251014",
   "description": "Weekly updated database of IP CIDR to Country codes, indexed by the first 1/4th of the IP address",
   "main": "index.js",
   "scripts": {
